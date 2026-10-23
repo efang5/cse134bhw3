@@ -6,17 +6,7 @@
   <meta name="description" content="Internship project: Cable Matcher, a model Ethan Fang built at Packet Micro that scores how similar two cables are from their TDR curves, using weights learned from engineers' pairing decisions.">
   <title>Wire Selection Model | Ethan Fang</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <style>
-    header, main, footer { border: 1px solid; }
-
-    /* Custom Element #1: <role-callout>, a semantic block that marks what I personally did on a project. */
-    role-callout {
-      display: block;
-      border: 2px solid;
-      padding: 0.5rem 1rem;
-      margin: 1rem 0;
-    }
-  </style>
+  <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
   <header>
@@ -58,29 +48,30 @@
       <section aria-labelledby="approach-heading">
         <h2 id="approach-heading">Approach</h2>
         <ol>
-          <li><strong>Pull features from each curve.</strong> For every cable, I find the peaks and troughs in its TDR curve and turn them into a small set of numbers that describe its shape.</li>
+          <li><strong>Pull features from each curve.</strong> For every cable, I measure four points on its TDR curve: its main peak, the trough after it (when there is one), and the curve's height at two fixed offsets. Together these numbers describe its shape.</li>
           <li><strong>Compare two cables feature by feature.</strong> For any pair, each feature gives its own measure of how close the two cables are.</li>
           <li><strong>Learn how much each feature matters.</strong> Using pairs an engineer had already matched, I fit a weight for each feature so the combined score agrees with the engineer's decisions.</li>
-          <li><strong>Score every pairing.</strong> The weighted features add up to one similarity score, so every possible pair in a set can be ranked automatically.</li>
+          <li><strong>Score every pairing.</strong> The weighted features add up to one distance score, where lower means a closer match, so every possible pair in a set can be ranked automatically.</li>
         </ol>
         <svg width="770" height="200" viewBox="0 0 770 200" role="img" aria-labelledby="flow-title flow-desc">
           <title id="flow-title">How Cable Matcher scores a pair of cables</title>
-          <desc id="flow-desc">Two TDR curves go through feature extraction. The features are combined using weights learned from an engineer's past pairings, producing one similarity score.</desc>
+          <desc id="flow-desc">Two TDR curves go through feature extraction. The features are combined using weights learned from an engineer's past pairings, producing one distance score, where lower means a closer match.</desc>
           <rect x="10" y="20" width="160" height="60" rx="8" fill="none" stroke="black" stroke-width="2"/>
           <text x="90" y="55" text-anchor="middle" font-family="sans-serif" font-size="15">Two TDR curves</text>
           <line x1="170" y1="50" x2="196" y2="50" stroke="black" stroke-width="2"/>
           <polygon points="196,43 210,50 196,57" fill="black"/>
           <rect x="210" y="20" width="170" height="60" rx="8" fill="none" stroke="black" stroke-width="2"/>
           <text x="295" y="46" text-anchor="middle" font-family="sans-serif" font-size="15">Extract features</text>
-          <text x="295" y="66" text-anchor="middle" font-family="sans-serif" font-size="12">peaks and troughs</text>
+          <text x="295" y="66" text-anchor="middle" font-family="sans-serif" font-size="12">peak, trough, 2 heights</text>
           <line x1="380" y1="50" x2="406" y2="50" stroke="black" stroke-width="2"/>
           <polygon points="406,43 420,50 406,57" fill="black"/>
           <rect x="420" y="20" width="160" height="60" rx="8" fill="none" stroke="black" stroke-width="2"/>
           <text x="500" y="55" text-anchor="middle" font-family="sans-serif" font-size="15">Weighted sum</text>
           <line x1="580" y1="50" x2="606" y2="50" stroke="black" stroke-width="2"/>
           <polygon points="606,43 620,50 606,57" fill="black"/>
-          <rect x="616" y="20" width="140" height="60" rx="8" fill="none" stroke="black" stroke-width="3"/>
-          <text x="686" y="55" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold">Similarity score</text>
+          <rect x="620" y="20" width="140" height="60" rx="8" fill="none" stroke="black" stroke-width="3"/>
+          <text x="690" y="46" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold">Distance score</text>
+          <text x="690" y="66" text-anchor="middle" font-family="sans-serif" font-size="12">lower = closer match</text>
           <rect x="400" y="120" width="200" height="60" rx="8" fill="none" stroke="black" stroke-width="2"/>
           <text x="500" y="146" text-anchor="middle" font-family="sans-serif" font-size="15">Learned weights</text>
           <text x="500" y="166" text-anchor="middle" font-family="sans-serif" font-size="12">fit to an engineer's pairings</text>
@@ -111,8 +102,7 @@
     <p>
       <a href="mailto:ethan.z.fang@gmail.com">Email</a> ·
       <a href="https://github.com/efang5">GitHub</a> ·
-      <a href="https://www.linkedin.com/in/ethan-fang-12b833273">LinkedIn</a> ·
-      <a href="../experiments.html">Lab</a>
+      <a href="https://www.linkedin.com/in/ethan-fang-12b833273">LinkedIn</a>
     </p>
     <p><small>&copy; 2026 Ethan Fang</small></p>
   </footer>
