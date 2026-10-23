@@ -19,14 +19,14 @@ body {
     padding: 1rem;
 }
 
-/* The following targets headers that are direct children of body. This is a more specific selector than just header. */
+/* The following targets headers that are direct children of body. This makes sure that the article headers are not affected. */
 body > header {
     padding-bottom: 1rem;
     margin-bottom: 1rem;
     border-bottom: 2px solid var(--accent-color);
 }
 
-/* The following targets footers that are direct children of body. This is a more specific selector than just footer. */
+/* The following targets footers that are direct children of body. This makes sure that the article footers are not affected. */
 body > footer {
     padding-top: 1rem;
     border-top: 2px solid var(--accent-color);
@@ -98,7 +98,7 @@ nav a {
 }
 
 /* The following targets a inside nav when it has aria-current="page".
-    This would be your current page.
+    The link for the page currently being viewed.
  */
 nav a[aria-current="page"] {
     font-weight: bold;
