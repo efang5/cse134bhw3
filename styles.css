@@ -19,12 +19,14 @@ body {
     padding: 1rem;
 }
 
+/* The following targets headers that are direct children of body. This is a more specific selector than just header. */
 body > header {
     padding-bottom: 1rem;
     margin-bottom: 1rem;
     border-bottom: 2px solid var(--accent-color);
 }
 
+/* The following targets footers that are direct children of body. This is a more specific selector than just footer. */
 body > footer {
     padding-top: 1rem;
     border-top: 2px solid var(--accent-color);
@@ -76,7 +78,7 @@ h3 {
     font-size: 1.25rem;
 }
 
-/* The following targets ul that are direct children of nav*/
+/* The following targets ul that are direct children of nav. */
 nav > ul {
     display: flex;
     gap: 1rem;
@@ -85,11 +87,12 @@ nav > ul {
     margin: 0;
 }
 
+/* The following targets li that are direct children of ul that are direct children of nav. */
 nav > ul > li {
     list-style: none;
 }
 
-/* The following targets a inside nav */
+/* The following targets a inside nav. */
 nav a {
     text-decoration: none;
 }
